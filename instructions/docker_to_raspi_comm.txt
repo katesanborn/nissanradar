@@ -1,0 +1,7 @@
+Step 1: Find the IP addresses
+Find your Raspberry Pi’s IP address on your local network (e.g., 192.168.1.100).
+Find your Windows host’s IP address on the same network (e.g., 192.168.1.50).
+Use ipconfig on Windows and ifconfig or hostname -I on the Pi to get these.
+
+Step 2: Run your Docker container, setting environment variables accordingly
+docker run --rm -it -e ROS_MASTER_URI=http://<raspi_ip>:11311 -e ROS_IP=<windows_host_ip> NissanRadar_image display:=grid

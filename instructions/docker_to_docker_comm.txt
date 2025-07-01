@@ -1,0 +1,8 @@
+Step 1: Create a user-defined Docker network
+docker network create side-radar-net
+
+Step 2: Run the RasPi simulator container on that network
+docker run --rm -it --network side-radar-net --name can_to_ros_sim can_to_ros_sim_image
+
+Step 3: Run your radar display container on the same network
+docker run --rm -it --network side-radar-net -e ROS_MASTER_URI=http://can_to_ros_sim:11311 -e ROS_IP=NissanRadar_container --name NissanRadar_container NissanRadar_image display:=grid
