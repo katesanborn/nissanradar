@@ -1,0 +1,28 @@
+<launch>
+    <arg name="display" default="number"/>
+    <arg name="topic_name" default="car/radar/track_L1_1"/>
+
+    <group if="$(eval arg('display') == 'grid')">
+        <node pkg="NissanRadar" type="radar_grid_lat_long.py" name="radar_grid_lat_long" output="screen"/>
+    </group>
+    
+    <group if="$(eval arg('display') == 'angle')">
+        <node pkg="NissanRadar" type="radar_angle.py" name="radar_angle" output="screen"/>
+    </group>
+
+    <group if="$(eval arg('display') == 'echo')">
+        <node pkg="rostopic" type="rostopic" name="echo" args="echo $(arg topic_name)" output="screen"/>
+    </group>
+
+    <group if="$(eval arg('display') == 'grid_120')">
+        <node pkg="NissanRadar" type="radar_grid_120.py" name="radar_grid_120" output="screen"/>
+    </group>
+
+    <group if="$(eval arg('display') == 'angle_120')">
+        <node pkg="NissanRadar" type="radar_angle_120.py" name="angle_120" output="screen"/>
+    </group>
+
+    <group unless="$(eval arg('display') == 'grid' or arg('display') == 'angle' or arg('display') == 'echo' or arg('display') == 'grid_120' or arg('display') == 'angle_120')">
+        <node pkg="NissanRadar" type="radar_display.py" name="radar_display" output="screen"/>
+    </group>
+</launch>
