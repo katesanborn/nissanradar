@@ -1,14 +1,14 @@
 #!/bin/bash
 
 echo "=========================="
-echo "Installing App NissanRadar"
+echo "Installing App nissanradar"
 
 # Here is where we perform installation of scripts, services, etc.
-echo " - Installing ROS packages for NissanRadar..."
+echo " - Installing ROS packages for nissanradar..."
 
 LIBPANDA_SRC=$(cat /etc/libpanda.d/libpanda_src_dir)
 LIBPANDA_USER=$(cat /etc/libpanda.d/libpanda_usr)
-LAUNCH_FILE=NissanRadar.launch
+LAUNCH_FILE=nissanradar.launch
 
 source /home/$LIBPANDA_USER/.bashrc
 
@@ -21,17 +21,17 @@ source /home/$LIBPANDA_USER/.bashrc
 # fi
 # popd
 
-runuser -l $LIBPANDA_USER -c /etc/libpanda.d/apps/NissanRadar/installRosPackages.sh
+runuser -l $LIBPANDA_USER -c /etc/libpanda.d/apps/nissanradar/installRosPackages.sh
 
 echo "Installing {APP_PRETTY_NAME}..."
 # runuser -l $LIBPANDA_USER -c /etc/libpanda.d/apps/vsl/installMidVslController.sh
 pushd /home/$LIBPANDA_USER/catkin_ws
 runuser -l $LIBPANDA_USER -c 'source /opt/ros/noetic/setup.bash && cd catkin_ws && catkin_make'
 source devel/setup.sh
-rosrun robot_upstart install NissanRadar/launch/${LAUNCH_FILE} --user root
+rosrun robot_upstart install nissanradar/launch/${LAUNCH_FILE} --user root
 
 echo "Enabling can_to_ros startup script"
 sudo systemctl daemon-reload
-sudo systemctl enable NissanRadar
+sudo systemctl enable nissanradar
 popd
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

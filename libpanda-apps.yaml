@@ -1,5 +1,5 @@
 apps:
-  - name: NissanRadar
+  - name: nissanradar
     properties:
       - owns_panda: true
     ros_repositories:
@@ -7,4 +7,4 @@ apps:
           repo: can_to_ros
           branch_or_hash: kate_nissan_side_radar
         - owner: katesanborn
-          repo: NissanRadar
+          repo: nissanradar

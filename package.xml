@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>NissanRadar</name>
+  <name>nissanradar</name>
   <version>0.0.0</version>
-  <description>The NissanRadar package</description>
+  <description>The nissanradar package</description>
 
   <maintainer email="kate.l.sanborn@vanderbilt.edu">Kate Sanborn</maintainer>
 

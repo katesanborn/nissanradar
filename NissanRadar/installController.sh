@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: Matt Nice,Matt Bunting
 
-LAUNCH_FILE=NissanRadar.launch
+LAUNCH_FILE=nissanradar.launch
 
 echo "----------------------------"
 if [[ $EUID == 0 ]];
@@ -19,7 +19,7 @@ rosrun robot_upstart install ${LAUNCH_FILE} --user root
 
 echo "Enabling can_to_ros startup script"
 sudo systemctl daemon-reload
-sudo systemctl enable NissanRadar
+sudo systemctl enable nissanradar
 popd
 
 echo "----------------------------"

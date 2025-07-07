@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "=========================="
-echo "Starting App NissanRadar for {APP_PRETTY_NAME}"
+echo "Starting App nissanradar for {APP_PRETTY_NAME}"
 
 
-systemctl start NissanRadar
+systemctl start nissanradar
 systemctl start rosnodeChecker

@@ -35,7 +35,7 @@ catkin_make
 
 echo "Enabling can_to_ros startup script"
 sudo systemctl daemon-reload
-sudo systemctl enable NissanRadar
+sudo systemctl enable nissanradar
 
 
 

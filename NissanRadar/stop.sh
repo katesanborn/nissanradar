@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "=========================="
-echo "Stopping App NissanRadar"
+echo "Stopping App nissanradar"
 
 systemctl stop rosnodeChecker
-systemctl stop NissanRadar
+systemctl stop nissanradar

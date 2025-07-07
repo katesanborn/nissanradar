@@ -17,10 +17,10 @@ RUN rosdep update
 
 # Copy source files
 WORKDIR /
-COPY . /catkin_ws/src/NissanRadar
+COPY . /catkin_ws/src/nissanradar
 
 # Make scripts executable
-RUN chmod +x /catkin_ws/src/NissanRadar/src/*.py
+RUN chmod +x /catkin_ws/src/nissanradar/src/*.py
 
 # Build workspace
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && \
