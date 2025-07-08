@@ -167,6 +167,7 @@ catkin_install_python(PROGRAMS
   src/radar_angle.py
   src/radar_grid_120.py
   src/radar_angle_120.py
+  src/mystery_display.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
