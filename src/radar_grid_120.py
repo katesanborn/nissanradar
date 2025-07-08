@@ -101,6 +101,7 @@ def curses_display(stdscr):
     curses.init_pair(1, curses.COLOR_RED, -1)    # Car
     curses.init_pair(2, curses.COLOR_GREEN, -1)  # Left radar
     curses.init_pair(3, curses.COLOR_CYAN, -1)   # Right radar
+    curses.init_pair(4, curses.COLOR_WHITE, -1)  # Center line
 
     while not rospy.is_shutdown():
         stdscr.erase()
@@ -110,6 +111,16 @@ def curses_display(stdscr):
         center_x = width // 2
         center_y = height // 2
 
+        # Draw dotted white center line
+        for y in range(1, height - 1, 2):  # step by 2 for dotted line
+            try:
+                stdscr.attron(curses.color_pair(4))
+                stdscr.addch(y, center_x, '|')
+                stdscr.attroff(curses.color_pair(4))
+            except curses.error:
+                pass
+
+        # Draw car at center
         try:
             stdscr.attron(curses.color_pair(1))
             stdscr.addch(center_y, center_x, 'X')
@@ -117,6 +128,7 @@ def curses_display(stdscr):
         except curses.error:
             pass
 
+        # Draw track points
         with lock:
             for label, (lat, long) in track_points.items():
                 gx = scale(lat, LAT_MIN, LAT_MAX, 0, width - 3)
@@ -124,7 +136,9 @@ def curses_display(stdscr):
                 x = gx + 1
                 y = gy + 1
 
-                if (x, y) == (center_x, center_y):
+                if (x == center_x):  # Prevent crossing the center line
+                    continue
+                if (x, y) == (center_x, center_y):  # Don't overwrite the car
                     continue
 
                 try:
