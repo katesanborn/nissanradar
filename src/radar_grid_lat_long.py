@@ -55,7 +55,7 @@ def curses_display(stdscr):
     # Color definitions
     curses.init_pair(1, curses.COLOR_RED, -1)    # Car
     curses.init_pair(2, curses.COLOR_GREEN, -1)  # Left radar
-    curses.init_pair(3, curses.COLOR_BLUE, -1)   # Right radar
+    curses.init_pair(3, curses.COLOR_CYAN, -1)   # Right radar
 
     while not rospy.is_shutdown():
         stdscr.erase()
