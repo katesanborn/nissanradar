@@ -8,3 +8,4 @@ apps:
           branch_or_hash: kate_nissan_side_radar
         - owner: katesanborn
           repo: nissanradar
+          branch_or_hash: master
