@@ -26,7 +26,11 @@
         <node pkg="nissanradar" type="mystery_display.py" name="mystery" output="screen"/>
     </group>
 
-    <group unless="$(eval arg('display') == 'grid' or arg('display') == 'angle' or arg('display') == 'echo' or arg('display') == 'grid_120' or arg('display') == 'angle_120' or arg('display') == 'mystery')">
+        <group if="$(eval arg('display') == 'combo')">
+        <node pkg="nissanradar" type="combo_display.py" name="combo" output="screen"/>
+    </group>
+
+    <group unless="$(eval arg('display') == 'grid' or arg('display') == 'angle' or arg('display') == 'echo' or arg('display') == 'grid_120' or arg('display') == 'angle_120' or arg('display') == 'mystery' or arg('display') == 'combo')">
         <node pkg="nissanradar" type="radar_display.py" name="radar_display" output="screen"/>
     </group>
 </launch>
