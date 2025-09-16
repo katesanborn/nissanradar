@@ -1,40 +1,47 @@
 <launch>
     <arg name="display" default="number"/>
     <arg name="topic_name" default="car/radar/track_L1_1"/>
+    <arg name="use_decoded" default="decode"/>
 
-    <group if="$(eval arg('display') == 'grid')">
-        <node pkg="nissanradar" type="radar_grid_lat_long.py" name="radar_grid_lat_long" output="screen"/>
-    </group>
-    
-    <group if="$(eval arg('display') == 'angle')">
-        <node pkg="nissanradar" type="radar_angle.py" name="radar_angle" output="screen"/>
+    <group if="$(eval arg('use_decoded') == 'decode')">
+        <node pkg="nissanradar" type="radar_display_decoded.py" name="radar_display_decoded" output="screen"/>
     </group>
 
-    <group if="$(eval arg('display') == 'echo')">
-        <node pkg="rostopic" type="rostopic" name="echo" args="echo $(arg topic_name)" output="screen"/>
-    </group>
+    <group unless="$(eval arg('use_decoded') == 'decode')">
+        <group if="$(eval arg('display') == 'grid')">
+            <node pkg="nissanradar" type="radar_grid_lat_long.py" name="radar_grid_lat_long" output="screen"/>
+        </group>
+        
+        <group if="$(eval arg('display') == 'angle')">
+            <node pkg="nissanradar" type="radar_angle.py" name="radar_angle" output="screen"/>
+        </group>
 
-    <group if="$(eval arg('display') == 'grid_120')">
-        <node pkg="nissanradar" type="radar_grid_120.py" name="radar_grid_120" output="screen"/>
-    </group>
+        <group if="$(eval arg('display') == 'echo')">
+            <node pkg="rostopic" type="rostopic" name="echo" args="echo $(arg topic_name)" output="screen"/>
+        </group>
 
-    <group if="$(eval arg('display') == 'angle_120')">
-        <node pkg="nissanradar" type="radar_angle_120.py" name="angle_120" output="screen"/>
-    </group>
+        <group if="$(eval arg('display') == 'grid_120')">
+            <node pkg="nissanradar" type="radar_grid_120.py" name="radar_grid_120" output="screen"/>
+        </group>
 
-    <group if="$(eval arg('display') == 'mystery')">
-        <node pkg="nissanradar" type="mystery_display.py" name="mystery" output="screen"/>
-    </group>
+        <group if="$(eval arg('display') == 'angle_120')">
+            <node pkg="nissanradar" type="radar_angle_120.py" name="angle_120" output="screen"/>
+        </group>
 
-    <group if="$(eval arg('display') == 'combo')">
-        <node pkg="nissanradar" type="combo_display.py" name="combo" output="screen"/>
-    </group>
+        <group if="$(eval arg('display') == 'mystery')">
+            <node pkg="nissanradar" type="mystery_display.py" name="mystery" output="screen"/>
+        </group>
 
-    <group if="$(eval arg('display') == 'combo_grid')">
-        <node pkg="nissanradar" type="combo_grid.py" name="combo_grid" output="screen"/>
-    </group>
+        <group if="$(eval arg('display') == 'combo')">
+            <node pkg="nissanradar" type="combo_display.py" name="combo" output="screen"/>
+        </group>
 
-    <group unless="$(eval arg('display') == 'grid' or arg('display') == 'angle' or arg('display') == 'echo' or arg('display') == 'grid_120' or arg('display') == 'angle_120' or arg('display') == 'mystery' or arg('display') == 'combo' or arg('display') == 'combo_grid')">
-        <node pkg="nissanradar" type="radar_display.py" name="radar_display" output="screen"/>
+        <group if="$(eval arg('display') == 'combo_grid')">
+            <node pkg="nissanradar" type="combo_grid.py" name="combo_grid" output="screen"/>
+        </group>
+
+        <group unless="$(eval arg('display') == 'grid' or arg('display') == 'angle' or arg('display') == 'echo' or arg('display') == 'grid_120' or arg('display') == 'angle_120' or arg('display') == 'mystery' or arg('display') == 'combo' or arg('display') == 'combo_grid')">
+            <node pkg="nissanradar" type="radar_display.py" name="radar_display" output="screen"/>
+        </group>
     </group>
 </launch>
