@@ -171,6 +171,7 @@ catkin_install_python(PROGRAMS
   src/combo_display.py
   src/combo_grid.py
   src/radar_display_decoded.py
+  src/radar_angle_120_decoded.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

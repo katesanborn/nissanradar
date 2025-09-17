@@ -4,7 +4,8 @@
     <arg name="use_decoded" default="decode"/>
 
     <group if="$(eval arg('use_decoded') == 'decode')">
-        <node pkg="nissanradar" type="radar_display_decoded.py" name="radar_display_decoded" output="screen"/>
+        <node pkg="nissanradar" type="radar_display_decoded.py" name="radar_display_decoded" output="screen" if="$(eval arg('display') == 'number')"/>
+        <node pkg="nissanradar" type="radar_angle_120_decoded.py" name="radar_angle_120_decoded" output="screen" if="$(eval arg('display') == 'angle')"/>
     </group>
 
     <group unless="$(eval arg('use_decoded') == 'decode')">
